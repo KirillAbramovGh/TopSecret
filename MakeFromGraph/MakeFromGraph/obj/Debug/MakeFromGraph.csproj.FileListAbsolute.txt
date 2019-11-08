@@ -1,0 +1,7 @@
+C:\Users\Kirill\source\repos\MakeFromGraph\MakeFromGraph\bin\Debug\MakeFromGraph.exe.config
+C:\Users\Kirill\source\repos\MakeFromGraph\MakeFromGraph\bin\Debug\MakeFromGraph.exe
+C:\Users\Kirill\source\repos\MakeFromGraph\MakeFromGraph\bin\Debug\MakeFromGraph.pdb
+C:\Users\Kirill\source\repos\MakeFromGraph\MakeFromGraph\obj\Debug\MakeFromGraph.csprojAssemblyReference.cache
+C:\Users\Kirill\source\repos\MakeFromGraph\MakeFromGraph\obj\Debug\MakeFromGraph.csproj.CoreCompileInputs.cache
+C:\Users\Kirill\source\repos\MakeFromGraph\MakeFromGraph\obj\Debug\MakeFromGraph.exe
+C:\Users\Kirill\source\repos\MakeFromGraph\MakeFromGraph\obj\Debug\MakeFromGraph.pdb

@@ -1,0 +1,435 @@
+switch (states)
+{
+ case States.S: 
+ if (Char.IsDigit(s[i])){
+  states = States.A;
+}
+else if(s[i] == ' '){
+ states = States.S;
+}
+else if(Char.IsLetter(s[i]) || s[i] == '_'){
+ states = States.IP;
+}
+else{states = States.E0;}
+; break;
+ case States.A: 
+ if (Char.IsDigit(s[i])){
+  states = States.A;
+}
+else if(s[i] == ' '){
+ states = States.B;
+}
+else if(s[i] == ':'){
+ states = States.C;
+}
+else{states = States.E1;}
+; break;
+ case States.B: 
+ if (s[i] == ' '){
+  states = States.B;
+}
+else if(s[i] == ':'){
+ states = States.C;
+}
+else{states = States.E2;}
+; break;
+ case States.C: 
+ if (s[i] == ' '){
+  states = States.C;
+}
+else if(Char.IsLetter(s[i]) || s[i] == '_'){
+ states = States.D;
+}
+else{states = States.E3;}
+; break;
+ case States.D: 
+ if (Char.IsLetterOrDigit(s[i]) || s[i] == '_'){
+  states = States.D;
+}
+else if(s[i] == '['){
+ states = States.Q;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.O5;
+}
+else if(s[i] == ':'){
+ states = States.G;
+}
+else{states = States.E4;}
+; break;
+ case States.O5: 
+ if (s[i] == '['){
+  states = States.Q;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.O5;
+}
+else if(s[i] == ':'){
+ states = States.G;
+}
+else{states = States.E5;}
+; break;
+ case States.G: 
+ if (s[i] == '='){
+  states = States.H;
+}
+else{states = States.E6;}
+; break;
+ case States.IP: 
+ if (Char.IsLetterOrDigit(s[i]) || s[i] == '_'){
+  states = States.IP;
+}
+else if(s[i] == ' '){
+ states = States.P1;
+}
+else if(s[i] == ':'){
+ states = States.M;
+}
+else if(s[i] == '['){
+ states = States.Q;
+}
+else{states = States.E7;}
+; break;
+ case States.P1: 
+ if (s[i] == ' '){
+  states = States.P1;
+}
+else if(s[i] == ':'){
+ states = States.M;
+}
+else{states = States.E8;}
+; break;
+ case States.M: 
+ if (s[i] == '='){
+  states = States.H;
+}
+else if(Char.IsLetter(s[i]) || s[i] == '_'){
+ states = States.W;
+}
+else{states = States.E9;}
+; break;
+ case States.W: 
+ if (s[i] == ' '){
+  states = States.W1;
+}
+else if(s[i] == ':'){
+ states = States.O1;
+}
+else{states = States.E10;}
+; break;
+ case States.W1: 
+ if (s[i] == ' '){
+  states = States.W1;
+}
+else if(s[i] == ':'){
+ states = States.O1;
+}
+else if(s[i] == '['){
+ states = States.Q;
+}
+else{states = States.E11;}
+; break;
+ case States.Q: 
+ if (s[i] == ' '){
+  states = States.Q;
+}
+else if(Char.IsLetter(s[i]) || s[i] == '_'){
+ states = States.A2;
+}
+else if(Char.IsDigit(s[i]) || s[i] == '-'){
+ states = States.C1;
+}
+else{states = States.E12;}
+; break;
+ case States.A2: 
+ if (Char.IsLetterOrDigit(s[i]) || s[i] == '_'){
+  states = States.A2;
+}
+else if(s[i] == ']'){
+ states = States.D1;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.B1;
+}
+else{states = States.E13;}
+; break;
+ case States.B1: 
+ if (s[i] == ' ' || s[i] == ' '){
+  states = States.B1;
+}
+else if(s[i] == ']'){
+ states = States.D1;
+}
+else{states = States.E14;}
+; break;
+ case States.C1: 
+ if (Char.IsDigit(s[i])){
+  states = States.C1;
+}
+else if(s[i] == ']'){
+ states = States.D1;
+}
+else if(s[i] == ' '){
+ states = States.B1;
+}
+else{states = States.E15;}
+; break;
+ case States.D1: 
+ if (s[i] == ' ' || s[i] == ' '){
+  states = States.D1;
+}
+else if(s[i] == ':'){
+ states = States.O1;
+}
+else{states = States.E16;}
+; break;
+ case States.O1: 
+ if (s[i] == '='){
+  states = States.H;
+}
+else{states = States.E17;}
+; break;
+ case States.H: 
+ if (s[i] == '-'){
+  states = States.L;
+}
+else if(Char.IsDigit(s[i])){
+ states = States.P;
+}
+else if(s[i] == ' '){
+ states = States.H;
+}
+else{states = States.E18;}
+; break;
+ case States.L: 
+ if (s[i] == '1' || s[i] == '2' || s[i] == '3' || s[i] == '4' || s[i] == '5' || s[i] == '6' || s[i] == '7' || s[i] == '8' || s[i] == '9'){
+  states = States.P;
+}
+else{states = States.E19;}
+; break;
+ case States.P: 
+ if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+  states = States.H;
+}
+else if(Char.IsDigit(s[i])){
+ states = States.P;
+}
+else if(s[i] == ';'){
+ states = States.F;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.R;
+}
+else if(s[i] == '.'){
+ states = States.N;
+}
+else{states = States.E20;}
+; break;
+ case States.N: 
+ if (Char.IsDigit(s[i])){
+  states = States.O;
+}
+else{states = States.E21;}
+; break;
+ case States.O: 
+ if (s[i] == ';'){
+  states = States.F;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.R;
+}
+else if(Char.IsDigit(s[i])){
+ states = States.O;
+}
+else if(s[i] == 'e'){
+ states = States.K;
+}
+else if(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+ states = States.H;
+}
+else{states = States.E22;}
+; break;
+ case States.K: 
+ if (s[i] == '+' || s[i] == '-'){
+  states = States.J;
+}
+else if(Char.IsDigit(s[i])){
+ states = States.I;
+}
+else{states = States.E23;}
+; break;
+ case States.J: 
+ if (Char.IsDigit(s[i])){
+  states = States.I;
+}
+else{states = States.E24;}
+; break;
+ case States.I: 
+ if (s[i] == ' ' || s[i] == ' '){
+  states = States.R;
+}
+else if(Char.IsDigit(s[i])){
+ states = States.I;
+}
+else if(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+ states = States.H;
+}
+else if(s[i] == ';'){
+ states = States.F;
+}
+else{states = States.E25;}
+; break;
+ case States.Z: 
+ if (Char.IsLetterOrDigit(s[i])){
+  states = States.Z;
+}
+else if(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+ states = States.H;
+}
+else if(s[i] == ';'){
+ states = States.F;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.Y;
+}
+else if(s[i] == 't'){
+ states = States.[;
+}
+else{states = States.E26;}
+; break;
+ case States.Y: 
+ if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+  states = States.H;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.Y;
+}
+else if(s[i] == ';'){
+ states = States.F;
+}
+else if(s[i] == 'd'){
+ states = States.H1;
+}
+else if(s[i] == 'm'){
+ states = States.G1;
+}
+else if(s[i] == '['){
+ states = States.T;
+}
+else{states = States.E27;}
+; break;
+ case States.T: 
+ if (s[i] == ' ' || s[i] == ' '){
+  states = States.T;
+}
+else if(Char.IsDigit(s[i])){
+ states = States.T1;
+}
+else if(s[i] == '-'){
+ states = States.T2;
+}
+else if(Char.IsLetter(s[i]) || s[i] == '_'){
+ states = States.X;
+}
+else{states = States.E28;}
+; break;
+ case States.X: 
+ if (Char.IsLetterOrDigit(s[i]) || s[i] == '_'){
+  states = States.X;
+}
+else if(s[i] == ' ' || s[i] == ' '){
+ states = States.V;
+}
+else if(s[i] == ']'){
+ states = States.A1;
+}
+else{states = States.E29;}
+; break;
+ case States.T1: 
+ if (s[i] == ' '){
+  states = States.V;
+}
+else if(s[i] == ']'){
+ states = States.A1;
+}
+else if(Char.IsDigit(s[i])){
+ states = States.T1;
+}
+else{states = States.E30;}
+; break;
+ case States.T2: 
+ if (Char.IsDigit(s[i])){
+  states = States.T1;
+}
+else{states = States.E31;}
+; break;
+ case States.V: 
+ if (s[i] == ' '){
+  states = States.V;
+}
+else if(s[i] == ']'){
+ states = States.A1;
+}
+else{states = States.E32;}
+; break;
+ case States.A1: 
+ if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+  states = States.H;
+}
+else if(s[i] == ';'){
+ states = States.F;
+}
+else if(s[i] == ' '){
+ states = States.R;
+}
+else{states = States.E33;}
+; break;
+ case States.R: 
+ if (s[i] == ' '){
+  states = States.R;
+}
+else if(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+ states = States.H;
+}
+else if(s[i] == 'm'){
+ states = States.G1;
+}
+else if(s[i] == 'd'){
+ states = States.H1;
+}
+else if(s[i] == ';'){
+ states = States.F;
+}
+else{states = States.E34;}
+; break;
+ case States.G1: 
+ if (s[i] == 'g' || s[i] == '1'){
+  states = States.o;
+}
+else{states = States.E35;}
+; break;
+ case States.I1: 
+ if (s[i] == 'd'){
+  states = States.U;
+}
+else{states = States.E36;}
+; break;
+ case States.H1: 
+ if (s[i] == 'i'){
+  states = States.P1;
+}
+else{states = States.E37;}
+; break;
+ case States.P1: 
+ if (s[i] == 'v'){
+  states = States.U;
+}
+else{states = States.E38;}
+; break;
+ case States.U: 
+ if (s[i] == ' '){
+  states = States.H;
+}
+else{states = States.E39;}
+; break;
+}
